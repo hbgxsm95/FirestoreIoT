@@ -33,4 +33,13 @@ class WeatherTests: XCTestCase {
         }
     }
     
+    //MARK: Meal Class Tests
+    func testWeatherInitializationSucceeds() {
+        
+    }
+    
+    func testWeatherInitializationFails() {
+        
+    }
+    
 }
