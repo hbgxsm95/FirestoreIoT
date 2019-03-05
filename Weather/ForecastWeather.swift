@@ -7,13 +7,13 @@
 //
 
 import UIKit
-class ForecastWeather: Weather {
+class ForecastWeather: WeatherBase{
     //MARK: Properties
     var date: String!
     
-    init?(date: String, cityName: String, cityTemperature: Double, cityHumidity: Double, cityWeather: String) {
+    init?(date: String, cityTemperature: Double, cityHumidity: Double, cityWeather: String) {
         
-        super.init(cityName: cityName, cityTemperature: cityTemperature, cityHumidity: cityHumidity, cityWeather: cityWeather)
+        super.init(cityTemperature: cityTemperature, cityHumidity: cityHumidity, cityWeather: cityWeather)
         
         guard !date.isEmpty else {
             return nil

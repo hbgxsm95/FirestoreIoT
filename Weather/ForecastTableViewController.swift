@@ -7,18 +7,28 @@
 //
 
 import UIKit
+import os.log
 
 class ForecastTableViewController: UITableViewController {
     
     //MARK: Properties
     
     var weathers = [ForecastWeather]()
+    @IBAction func backButton(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func unwindToMealList(sender: UIStoryboardSegue) {
+        if let sourceViewController = sender.source as? FiltersViewController, let type = sourceViewController.typeTextField.text, let sortBy = sourceViewController.sortByTextField.text {
+            //Mark:
+            // Update the result
+        }
+    }
     
     let dayOfWeek = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.loadSampleWeathers()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -56,7 +66,6 @@ class ForecastTableViewController: UITableViewController {
         
         // Fetches the appropriate meal for the data source layout.
         let weather = weathers[indexPath.row]
-        
         cell.forecastDate.text = weather.date
         cell.dateImage.image = UIImage(named: dayOfWeek[getDayOfWeek(weather.date)! - 1])
         cell.cityWeather.text = weather.cityWeather
@@ -111,21 +120,12 @@ class ForecastTableViewController: UITableViewController {
 
     /*
     // MARK: - Navigation
-
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        super.prepare(for: segue, sender: sender)
     }
-    */
-    
-    private func loadSampleWeathers() {
-        
-        guard let weather = ForecastWeather(date: "2019-03-04", cityName: "San Francisco", cityTemperature: 23.01, cityHumidity: 41.3, cityWeather: "Rainy") else {
-            fatalError("Unable to instantiate meal1")
-        }
-        
-        weathers += [weather]
-    }
+ */
 
 }

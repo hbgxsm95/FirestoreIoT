@@ -11,7 +11,7 @@ import UIKit
 class WeatherTableViewController: UITableViewController {
     
     //MARK: Properties
-    var weathers = [TodayWeather]()
+    var weathers = [Weather]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -95,21 +95,47 @@ class WeatherTableViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        super.prepare(for: segue, sender: sender)
+        
+        
+        
+        guard let forecastTableViewController = segue.destination as? ForecastTableViewController else {
+            fatalError("Unexpected destination: \(segue.destination)")
+        }
+        
+        guard let selectedCityCell = sender as? UIButton else {
+            fatalError("Unexpected sender: \(sender)")
+        }
+        
+        guard let indexPath = tableView.indexPathForRow(at: selectedCityCell.convert(CGPoint.zero, to: tableView)) else {
+            fatalError("The selected cell is not being displayed by the table")
+        }
+        
+        
+        
+        guard let selectedCityWeather = weathers[indexPath.row].forecastWeathers else { return }
+        forecastTableViewController.weathers = selectedCityWeather
     }
-    */
     
     //MARK: Private Methods
     
     private func loadSampleWeathers() {
         let SFImage = UIImage(named: "SF")
-        guard let SFWeather = TodayWeather(cityName: "San Francisco", cityImage: SFImage, cityTemperature: 20.7, cityAvgTemperature: 21.3, cityHumidity: 43, cityWeather: "Cloudy") else {
+        
+        var forecastWeathers = [ForecastWeather]()
+        guard let forecastWeather = ForecastWeather(date: "2019-03-04", cityTemperature: 23.01, cityHumidity: 41.3, cityWeather: "Rainy") else {
+            fatalError("Unable to instantiate meal1")
+        }
+        forecastWeathers += [forecastWeather]
+        
+        guard let SFWeather = Weather(cityName: "San Francisco", cityImage: SFImage, cityTemperature: 20.7, cityAvgTemperature: 21.3, cityHumidity: 43, cityWeather: "Cloudy", forecastWeathers: forecastWeathers) else {
             fatalError("Unable to instantiate sf weather")
         }
         

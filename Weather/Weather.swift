@@ -1,5 +1,5 @@
 //
-//  Weather.swift
+//  TodayWeather.swift
 //  Weather
 //
 //  Created by Peiqin Zhao on 3/4/19.
@@ -8,31 +8,18 @@
 
 import UIKit
 
-class Weather {
-    
+class Weather: WeatherBase {
     //MARK: Properties
-    var cityName: String
-    var cityTemperature: Double
-    var cityHumidity: Double
-    var cityWeather: String
+    var cityName: String?
+    var cityImage: UIImage?
+    var cityAvgTemperature: Double!
+    var forecastWeathers: [ForecastWeather]?
     
-    init?(cityName: String, cityTemperature: Double, cityHumidity: Double, cityWeather: String) {
-        
-        guard !cityName.isEmpty else {
-            return nil
-        }
-        
-        guard !cityWeather.isEmpty else {
-            return nil
-        }
-        
-        guard cityHumidity > 0 else {
-            return nil
-        }
-        
+    init?(cityName: String, cityImage: UIImage?, cityTemperature: Double, cityAvgTemperature: Double?, cityHumidity: Double, cityWeather: String, forecastWeathers: [ForecastWeather]) {
+        super.init(cityTemperature: cityTemperature, cityHumidity: cityHumidity, cityWeather: cityWeather)
         self.cityName = cityName
-        self.cityTemperature = cityTemperature
-        self.cityHumidity = cityHumidity
-        self.cityWeather = cityWeather
+        self.cityImage = cityImage
+        self.cityAvgTemperature = cityAvgTemperature
+        self.forecastWeathers = forecastWeathers
     }
 }
