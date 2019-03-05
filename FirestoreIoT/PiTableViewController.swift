@@ -15,7 +15,7 @@ class PiTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadSampleWeathers()
+        loadSamplePis()
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -42,21 +42,23 @@ class PiTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cellIdentifier = "WeatherTableViewCell"
+        let cellIdentifier = "PiTableViewCell"
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? PiTableViewCell  else {
             fatalError("The dequeued cell is not an instance of WeatherTableViewCell.")
         }
         
-        let weather = pis[indexPath.row]
+        let pi = pis[indexPath.row]
         
         // Configure the cell...
-        cell.cityName.text = weather.cityName
-        cell.cityImage.image = weather.cityImage
-        cell.cityTemperature.text = String(format:"%.1f °C", weather.cityTemperature)
-        cell.cityAvgTemperature.text = String(format:"%.1f °C", weather.cityAvgTemperature)
-        cell.cityHumidity.text = String(format:"%.1f ", weather.cityHumidity) + "%"
-        cell.cityWeather.text = weather.cityWeather
+        cell.cpuImage.image = pi.cpuImage
+        cell.cpuName.text = pi.name
+        cell.geoInfo.text = pi.geoInfo
+        cell.cpuTemperature.text = String(format:"%.1f °C", pi.cpuTemperature)
+        cell.gpuTemperature.text = String(format:"%.1f °C", pi.gpuTemperature)
+        cell.diskUsage.text = String(format:"%.1f ", pi.diskUsage) + "%"
+        cell.memoryUsage.text = String(format:"%.1f ", pi.memoryUsage) + "%"
+        
         return cell
     }
 
@@ -106,40 +108,37 @@ class PiTableViewController: UITableViewController {
         
         
         
-        guard let forecastTableViewController = segue.destination as? SensorTableViewController else {
+        guard let sensorTableViewController = segue.destination as? SensorTableViewController else {
             fatalError("Unexpected destination: \(segue.destination)")
         }
         
-        guard let selectedCityCell = sender as? UIButton else {
+        guard let selectedSensorCell = sender as? UIButton else {
             fatalError("Unexpected sender: \(sender)")
         }
         
-        guard let indexPath = tableView.indexPathForRow(at: selectedCityCell.convert(CGPoint.zero, to: tableView)) else {
+        guard let indexPath = tableView.indexPathForRow(at: selectedSensorCell.convert(CGPoint.zero, to: tableView)) else {
             fatalError("The selected cell is not being displayed by the table")
         }
-        
-        
-        
-        guard let selectedCityWeather = pis[indexPath.row].forecastWeathers else { return }
-        forecastTableViewController.weathers = selectedCityWeather
+        sensorTableViewController.sensors = pis[indexPath.row].sensors
     }
     
     //MARK: Private Methods
     
-    private func loadSampleWeathers() {
-        let SFImage = UIImage(named: "SF")
+    private func loadSamplePis() {
+        let piImage = UIImage(named: "pi")
+        let sensorImage = UIImage(named: "dht11")
         
-        var forecastWeathers = [ForecastWeather]()
-        guard let forecastWeather = ForecastWeather(date: "2019-03-04", cityTemperature: 23.01, cityHumidity: 41.3, cityWeather: "Rainy") else {
-            fatalError("Unable to instantiate meal1")
-        }
-        forecastWeathers += [forecastWeather]
-        
-        guard let SFWeather = Pi(cityName: "San Francisco", cityImage: SFImage, cityTemperature: 20.7, cityAvgTemperature: 21.3, cityHumidity: 43, cityWeather: "Cloudy", forecastWeathers: forecastWeathers) else {
-            fatalError("Unable to instantiate sf weather")
+        guard let sensor = Sensor(errorRate: 0.01, samplingRate: 30, sampledValue: 25, name: "Rogue", image: sensorImage) else {
+            fatalError("Unable to instantiate Sensor DHT11")
         }
         
-        pis += [SFWeather]
+        guard let pi = Pi(name: "Iron", geoInfo: "San Francisco", cpuImage: piImage, gpuTemperature: 56, cpuTemperature: 65, memoryUsage: 24, diskUsage: 45) else {
+            fatalError("Unable to instantiate Pi")
+        }
+        
+        pi.sensors += [sensor]
+        
+        pis += [pi]
     }
 
 }

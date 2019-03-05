@@ -10,12 +10,13 @@ import UIKit
 
 class PiTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var cityName: UILabel!
-    @IBOutlet weak var cityImage: UIImageView!
-    @IBOutlet weak var cityTemperature: UILabel!
-    @IBOutlet weak var cityHumidity: UILabel!
-    @IBOutlet weak var cityWeather: UILabel!
-    @IBOutlet weak var cityAvgTemperature: UILabel!
+    @IBOutlet weak var cpuName: UILabel!
+    @IBOutlet weak var geoInfo: UILabel!
+    @IBOutlet weak var cpuImage: UIImageView!
+    @IBOutlet weak var gpuTemperature: UILabel!
+    @IBOutlet weak var cpuTemperature: UILabel!
+    @IBOutlet weak var memoryUsage: UILabel!
+    @IBOutlet weak var diskUsage: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

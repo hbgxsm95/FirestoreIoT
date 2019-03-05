@@ -11,12 +11,13 @@ import UIKit
 class Sensor {
   //MARK: Properties
     var errorRate: Double
-    var samplingRate: Double
+    var samplingRate: Int
     var sampledValue: Double
     var name: String
+    var image: UIImage?
     
     
-    init?(errorRate: Double, samplingRate: Double, sampledValue: Double, name: String) {
+    init?(errorRate: Double, samplingRate: Int, sampledValue: Double, name: String, image: UIImage?) {
         
         guard samplingRate > 0 && samplingRate < 100 else {
             return nil
@@ -26,9 +27,14 @@ class Sensor {
             return nil
         }
         
+        guard !name.isEmpty else {
+            return nil
+        }
+        
         self.errorRate = errorRate
         self.samplingRate = samplingRate
         self.sampledValue = sampledValue
         self.name = name
+        self.image = image
     }
 }

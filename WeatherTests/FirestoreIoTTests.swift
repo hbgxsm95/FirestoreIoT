@@ -7,9 +7,9 @@
 //
 
 import XCTest
-@testable import Weather
+@testable import FirestoreIoT
 
-class WeatherTests: XCTestCase {
+class FirestoreIoTTests: XCTestCase {
     
     override func setUp() {
         super.setUp()

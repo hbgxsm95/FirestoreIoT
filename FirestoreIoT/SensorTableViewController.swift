@@ -13,7 +13,8 @@ class SensorTableViewController: UITableViewController {
     
     //MARK: Properties
     
-    var weathers = [ForecastWeather]()
+    var sensors = [Sensor]()
+    
     @IBAction func backButton(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
@@ -24,8 +25,6 @@ class SensorTableViewController: UITableViewController {
             // Update the result
         }
     }
-    
-    let dayOfWeek = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,35 +51,28 @@ class SensorTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return weathers.count
+        return sensors.count
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // Table view cells are reused and should be dequeued using a cell identifier.
-        let cellIdentifier = "ForecastTableViewCell"
+        let cellIdentifier = "SensorTableViewCell"
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? SensorTableViewCell  else {
             fatalError("The dequeued cell is not an instance of ForecastTableViewCell.")
         }
         
         // Fetches the appropriate meal for the data source layout.
-        let weather = weathers[indexPath.row]
-        cell.forecastDate.text = weather.date
-        cell.dateImage.image = UIImage(named: dayOfWeek[getDayOfWeek(weather.date)! - 1])
-        cell.cityWeather.text = weather.cityWeather
-        cell.cityTemperature.text = String(format:"%.1f °C", weather.cityTemperature)
-        cell.cityHumidity.text = String(format:"%.1f °C", weather.cityHumidity)
+        let sensor = sensors[indexPath.row]
+        
+        cell.name.text = sensor.name
+        cell.errorRate.text = String(format:"%.2f ", sensor.errorRate) + "%"
+        cell.sampledValue.text = String(format:"%.1f °C", sensor.sampledValue)
+        cell.samplingRate.text = String(format:"%d QPS", sensor.samplingRate)
+        cell.sensorImage.image = sensor.image
+        
         return cell
-    }
-    
-    func getDayOfWeek(_ today:String) -> Int? {
-        let formatter  = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd"
-        guard let todayDate = formatter.date(from: today) else { return nil }
-        let myCalendar = Calendar(identifier: .gregorian)
-        let weekDay = myCalendar.component(.weekday, from: todayDate)
-        return weekDay
     }
 
     /*

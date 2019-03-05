@@ -10,11 +10,11 @@ import UIKit
 
 class SensorTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var forecastDate: UILabel!
-    @IBOutlet weak var dateImage: UIImageView!
-    @IBOutlet weak var cityWeather: UILabel!
-    @IBOutlet weak var cityTemperature: UILabel!
-    @IBOutlet weak var cityHumidity: UILabel!
+    @IBOutlet weak var errorRate: UILabel!
+    @IBOutlet weak var sensorImage: UIImageView!
+    @IBOutlet weak var samplingRate: UILabel!
+    @IBOutlet weak var sampledValue: UILabel!
+    @IBOutlet weak var name: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

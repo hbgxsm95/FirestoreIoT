@@ -12,7 +12,7 @@
 		821F77F22228B2550064F7E6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 821F77F02228B2550064F7E6 /* Main.storyboard */; };
 		821F77F42228B2570064F7E6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 821F77F32228B2570064F7E6 /* Assets.xcassets */; };
 		821F77F72228B2570064F7E6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 821F77F52228B2570064F7E6 /* LaunchScreen.storyboard */; };
-		821F78022228B2570064F7E6 /* WeatherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821F78012228B2570064F7E6 /* WeatherTests.swift */; };
+		821F78022228B2570064F7E6 /* FirestoreIoTTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821F78012228B2570064F7E6 /* FirestoreIoTTests.swift */; };
 		829898E1222D99BC00F73B19 /* PiTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829898E0222D99BC00F73B19 /* PiTableViewCell.swift */; };
 		829898E7222DA38E00F73B19 /* PiTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829898E6222DA38E00F73B19 /* PiTableViewController.swift */; };
 		829898E9222DB18600F73B19 /* SensorTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829898E8222DB18600F73B19 /* SensorTableViewController.swift */; };
@@ -42,7 +42,7 @@
 		821F77F62228B2570064F7E6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		821F77F82228B2570064F7E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		821F77FD2228B2570064F7E6 /* FirestoreIoTTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FirestoreIoTTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		821F78012228B2570064F7E6 /* WeatherTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherTests.swift; sourceTree = "<group>"; };
+		821F78012228B2570064F7E6 /* FirestoreIoTTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreIoTTests.swift; sourceTree = "<group>"; };
 		821F78032228B2570064F7E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		829898E0222D99BC00F73B19 /* PiTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PiTableViewCell.swift; sourceTree = "<group>"; };
 		829898E6222DA38E00F73B19 /* PiTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PiTableViewController.swift; sourceTree = "<group>"; };
@@ -114,7 +114,7 @@
 		821F78002228B2570064F7E6 /* FirestoreIoTTests */ = {
 			isa = PBXGroup;
 			children = (
-				821F78012228B2570064F7E6 /* WeatherTests.swift */,
+				821F78012228B2570064F7E6 /* FirestoreIoTTests.swift */,
 				821F78032228B2570064F7E6 /* Info.plist */,
 			);
 			name = FirestoreIoTTests;
@@ -239,7 +239,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				821F78022228B2570064F7E6 /* WeatherTests.swift in Sources */,
+				821F78022228B2570064F7E6 /* FirestoreIoTTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -392,7 +392,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = Weather/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/FirestoreIoT/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -409,7 +409,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = Weather/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/FirestoreIoT/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
