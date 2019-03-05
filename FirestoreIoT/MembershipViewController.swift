@@ -10,9 +10,8 @@ import UIKit
 
 class MembershipViewController: UIViewController {
 
-    @IBAction func nonMembershipButton(_ sender: Any) {
-    }
     @IBAction func membershipButton(_ sender: Any) {
+        //TODO: Authentication
     }
     override func viewDidLoad() {
         super.viewDidLoad()

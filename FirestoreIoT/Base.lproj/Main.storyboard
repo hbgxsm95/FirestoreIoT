@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Iwg-vd-xEe">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="doB-xJ-j6C">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -260,7 +260,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Non-Membership"/>
                                 <connections>
-                                    <action selector="nonMembershipButton:" destination="doB-xJ-j6C" eventType="touchUpInside" id="YqK-W1-1ts"/>
+                                    <segue destination="Iwg-vd-xEe" kind="show" id="BbJ-QS-Wud"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f8S-3w-f34">
@@ -357,13 +357,13 @@
                         <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="hP5-nr-iAu">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
-                                <segue destination="K9t-1s-zFx" kind="unwind" unwindAction="unwindToMealListWithSender:" id="apZ-fX-4mg"/>
+                                <segue destination="K9t-1s-zFx" kind="unwind" unwindAction="unwindToSensorListWithSender:" id="fvk-oH-fvf"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="model" destination="dMO-HY-hPy" id="DNg-eg-HIh"/>
                         <outlet property="sortByTextField" destination="0eR-z4-9aF" id="a9Z-l1-4iI"/>
-                        <outlet property="typeTextField" destination="dMO-HY-hPy" id="DNg-eg-HIh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dhX-Te-jRA" userLabel="First Responder" sceneMemberID="firstResponder"/>

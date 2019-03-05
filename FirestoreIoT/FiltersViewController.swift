@@ -30,9 +30,9 @@ class FiltersViewController: UIViewController, UIPickerViewDataSource, UIPickerV
             return (navigationController: navController, filtersController: controller)
     }
     
-    @IBOutlet var typeTextField: UITextField! {
+    @IBOutlet var model: UITextField! {
         didSet {
-            typeTextField.inputView = typePickerView
+            model.inputView = typePickerView
         }
     }
     @IBOutlet var sortByTextField: UITextField! {
@@ -53,7 +53,7 @@ class FiltersViewController: UIViewController, UIPickerViewDataSource, UIPickerV
     }
     
     @IBAction func didTapDoneButton(_ sender: Any) {
-        delegate?.controller(self, didSelectCategory: typeTextField.text,
+        delegate?.controller(self, didSelectCategory: model.text,
                              sortBy: sortByTextField.text)
         navigationController?.dismiss(animated: true, completion: nil)
     }
@@ -63,7 +63,7 @@ class FiltersViewController: UIViewController, UIPickerViewDataSource, UIPickerV
     }
     
     func clearFilters() {
-        typeTextField.text = ""
+        model.text = ""
         sortByTextField.text = ""
     }
     
@@ -81,8 +81,8 @@ class FiltersViewController: UIViewController, UIPickerViewDataSource, UIPickerV
         return pickerView
     }()
     
-    private let sortByOptions = ["Temperature", "Humidity"]
-    private let typeOptions = ["Rainy", "Cloud", "Sunny", "All"]
+    private let sortByOptions = ["Sampling Rate", "Error Rate", "Sampled Value"]
+    private let modelOptions = ["Rogue", "Cloud", "Sunny", "All"]
     
     // MARK: UIPickerViewDataSource
     
@@ -95,7 +95,7 @@ class FiltersViewController: UIViewController, UIPickerViewDataSource, UIPickerV
         case sortByPickerView:
             return sortByOptions.count
         case typePickerView:
-            return typeOptions.count
+            return modelOptions.count
             
         case _:
             fatalError("Unhandled picker view: \(pickerView)")
@@ -109,7 +109,7 @@ class FiltersViewController: UIViewController, UIPickerViewDataSource, UIPickerV
         case sortByPickerView:
             return sortByOptions[row]
         case typePickerView:
-            return typeOptions[row]
+            return modelOptions[row]
             
         case _:
             fatalError("Unhandled picker view: \(pickerView)")
@@ -121,7 +121,7 @@ class FiltersViewController: UIViewController, UIPickerViewDataSource, UIPickerV
         case sortByPickerView:
             sortByTextField.text = sortByOptions[row]
         case typePickerView:
-            typeTextField.text = typeOptions[row]
+            model.text = modelOptions[row]
         case _:
             fatalError("Unhandled picker view: \(pickerView)")
         }

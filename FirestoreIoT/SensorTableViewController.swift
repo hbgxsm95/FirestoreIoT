@@ -19,10 +19,10 @@ class SensorTableViewController: UITableViewController {
         dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func unwindToMealList(sender: UIStoryboardSegue) {
-        if let sourceViewController = sender.source as? FiltersViewController, let type = sourceViewController.typeTextField.text, let sortBy = sourceViewController.sortByTextField.text {
+    @IBAction func unwindToSensorList(sender: UIStoryboardSegue) {
+        if let sourceViewController = sender.source as? FiltersViewController, let model = sourceViewController.model.text, let sortBy = sourceViewController.sortByTextField.text {
             //Mark:
-            // Update the result
+            //TODO: Update the result
         }
     }
     
