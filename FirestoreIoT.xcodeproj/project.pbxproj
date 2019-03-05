@@ -13,15 +13,14 @@
 		821F77F42228B2570064F7E6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 821F77F32228B2570064F7E6 /* Assets.xcassets */; };
 		821F77F72228B2570064F7E6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 821F77F52228B2570064F7E6 /* LaunchScreen.storyboard */; };
 		821F78022228B2570064F7E6 /* WeatherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821F78012228B2570064F7E6 /* WeatherTests.swift */; };
-		829898E1222D99BC00F73B19 /* WeatherTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829898E0222D99BC00F73B19 /* WeatherTableViewCell.swift */; };
-		829898E3222DA0AC00F73B19 /* WeatherBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829898E2222DA0AC00F73B19 /* WeatherBase.swift */; };
-		829898E7222DA38E00F73B19 /* WeatherTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829898E6222DA38E00F73B19 /* WeatherTableViewController.swift */; };
-		829898E9222DB18600F73B19 /* ForecastTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829898E8222DB18600F73B19 /* ForecastTableViewController.swift */; };
-		829898EB222DB25500F73B19 /* ForecastTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829898EA222DB25500F73B19 /* ForecastTableViewCell.swift */; };
-		829898EF222DD47A00F73B19 /* ForecastWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829898EE222DD47A00F73B19 /* ForecastWeather.swift */; };
-		829898F1222DF2A200F73B19 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829898F0222DF2A200F73B19 /* Weather.swift */; };
-		829898F3222E07BA00F73B19 /* FiltersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829898F2222E07BA00F73B19 /* FiltersViewController.swift */; };
+		829898E1222D99BC00F73B19 /* PiTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829898E0222D99BC00F73B19 /* PiTableViewCell.swift */; };
+		829898E7222DA38E00F73B19 /* PiTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829898E6222DA38E00F73B19 /* PiTableViewController.swift */; };
+		829898E9222DB18600F73B19 /* SensorTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829898E8222DB18600F73B19 /* SensorTableViewController.swift */; };
+		829898EB222DB25500F73B19 /* SensorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829898EA222DB25500F73B19 /* SensorTableViewCell.swift */; };
+		829898F1222DF2A200F73B19 /* Pi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829898F0222DF2A200F73B19 /* Pi.swift */; };
 		829898F5222E100E00F73B19 /* MembershipViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829898F4222E100E00F73B19 /* MembershipViewController.swift */; };
+		829898F7222E60BA00F73B19 /* FiltersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829898F6222E60BA00F73B19 /* FiltersViewController.swift */; };
+		829898F9222E619500F73B19 /* Sensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829898F8222E619500F73B19 /* Sensor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,25 +34,24 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		821F77E92228B2550064F7E6 /* Weather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Weather.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		821F77E92228B2550064F7E6 /* FirestoreIoT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FirestoreIoT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		821F77EC2228B2550064F7E6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		821F77EE2228B2550064F7E6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		821F77F12228B2550064F7E6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		821F77F32228B2570064F7E6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		821F77F62228B2570064F7E6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		821F77F82228B2570064F7E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		821F77FD2228B2570064F7E6 /* WeatherTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WeatherTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		821F77FD2228B2570064F7E6 /* FirestoreIoTTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FirestoreIoTTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		821F78012228B2570064F7E6 /* WeatherTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherTests.swift; sourceTree = "<group>"; };
 		821F78032228B2570064F7E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		829898E0222D99BC00F73B19 /* WeatherTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherTableViewCell.swift; sourceTree = "<group>"; };
-		829898E2222DA0AC00F73B19 /* WeatherBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherBase.swift; sourceTree = "<group>"; };
-		829898E6222DA38E00F73B19 /* WeatherTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherTableViewController.swift; sourceTree = "<group>"; };
-		829898E8222DB18600F73B19 /* ForecastTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastTableViewController.swift; sourceTree = "<group>"; };
-		829898EA222DB25500F73B19 /* ForecastTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastTableViewCell.swift; sourceTree = "<group>"; };
-		829898EE222DD47A00F73B19 /* ForecastWeather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastWeather.swift; sourceTree = "<group>"; };
-		829898F0222DF2A200F73B19 /* Weather.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
-		829898F2222E07BA00F73B19 /* FiltersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FiltersViewController.swift; path = "../../friendlyeats-ios/FriendlyEats/FiltersViewController.swift"; sourceTree = "<group>"; };
+		829898E0222D99BC00F73B19 /* PiTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PiTableViewCell.swift; sourceTree = "<group>"; };
+		829898E6222DA38E00F73B19 /* PiTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PiTableViewController.swift; sourceTree = "<group>"; };
+		829898E8222DB18600F73B19 /* SensorTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorTableViewController.swift; sourceTree = "<group>"; };
+		829898EA222DB25500F73B19 /* SensorTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorTableViewCell.swift; sourceTree = "<group>"; };
+		829898F0222DF2A200F73B19 /* Pi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pi.swift; sourceTree = "<group>"; };
 		829898F4222E100E00F73B19 /* MembershipViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MembershipViewController.swift; sourceTree = "<group>"; };
+		829898F6222E60BA00F73B19 /* FiltersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersViewController.swift; sourceTree = "<group>"; };
+		829898F8222E619500F73B19 /* Sensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sensor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,8 +75,8 @@
 		821F77E02228B2550064F7E6 = {
 			isa = PBXGroup;
 			children = (
-				821F77EB2228B2550064F7E6 /* Weather */,
-				821F78002228B2570064F7E6 /* WeatherTests */,
+				821F77EB2228B2550064F7E6 /* FirestoreIoT */,
+				821F78002228B2570064F7E6 /* FirestoreIoTTests */,
 				821F77EA2228B2550064F7E6 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -86,49 +84,49 @@
 		821F77EA2228B2550064F7E6 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				821F77E92228B2550064F7E6 /* Weather.app */,
-				821F77FD2228B2570064F7E6 /* WeatherTests.xctest */,
+				821F77E92228B2550064F7E6 /* FirestoreIoT.app */,
+				821F77FD2228B2570064F7E6 /* FirestoreIoTTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		821F77EB2228B2550064F7E6 /* Weather */ = {
+		821F77EB2228B2550064F7E6 /* FirestoreIoT */ = {
 			isa = PBXGroup;
 			children = (
-				829898F0222DF2A200F73B19 /* Weather.swift */,
-				829898E6222DA38E00F73B19 /* WeatherTableViewController.swift */,
-				829898E0222D99BC00F73B19 /* WeatherTableViewCell.swift */,
+				829898F6222E60BA00F73B19 /* FiltersViewController.swift */,
+				829898F0222DF2A200F73B19 /* Pi.swift */,
+				829898F8222E619500F73B19 /* Sensor.swift */,
+				829898E6222DA38E00F73B19 /* PiTableViewController.swift */,
+				829898E0222D99BC00F73B19 /* PiTableViewCell.swift */,
 				821F77EC2228B2550064F7E6 /* AppDelegate.swift */,
 				821F77EE2228B2550064F7E6 /* ViewController.swift */,
 				821F77F02228B2550064F7E6 /* Main.storyboard */,
 				829898F4222E100E00F73B19 /* MembershipViewController.swift */,
-				829898EA222DB25500F73B19 /* ForecastTableViewCell.swift */,
-				829898E8222DB18600F73B19 /* ForecastTableViewController.swift */,
-				829898E2222DA0AC00F73B19 /* WeatherBase.swift */,
-				829898F2222E07BA00F73B19 /* FiltersViewController.swift */,
+				829898EA222DB25500F73B19 /* SensorTableViewCell.swift */,
+				829898E8222DB18600F73B19 /* SensorTableViewController.swift */,
 				821F77F32228B2570064F7E6 /* Assets.xcassets */,
 				821F77F52228B2570064F7E6 /* LaunchScreen.storyboard */,
 				821F77F82228B2570064F7E6 /* Info.plist */,
-				829898EE222DD47A00F73B19 /* ForecastWeather.swift */,
 			);
-			path = Weather;
+			path = FirestoreIoT;
 			sourceTree = "<group>";
 		};
-		821F78002228B2570064F7E6 /* WeatherTests */ = {
+		821F78002228B2570064F7E6 /* FirestoreIoTTests */ = {
 			isa = PBXGroup;
 			children = (
 				821F78012228B2570064F7E6 /* WeatherTests.swift */,
 				821F78032228B2570064F7E6 /* Info.plist */,
 			);
+			name = FirestoreIoTTests;
 			path = WeatherTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		821F77E82228B2550064F7E6 /* Weather */ = {
+		821F77E82228B2550064F7E6 /* FirestoreIoT */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 821F78062228B2570064F7E6 /* Build configuration list for PBXNativeTarget "Weather" */;
+			buildConfigurationList = 821F78062228B2570064F7E6 /* Build configuration list for PBXNativeTarget "FirestoreIoT" */;
 			buildPhases = (
 				821F77E52228B2550064F7E6 /* Sources */,
 				821F77E62228B2550064F7E6 /* Frameworks */,
@@ -138,14 +136,14 @@
 			);
 			dependencies = (
 			);
-			name = Weather;
+			name = FirestoreIoT;
 			productName = Weather;
-			productReference = 821F77E92228B2550064F7E6 /* Weather.app */;
+			productReference = 821F77E92228B2550064F7E6 /* FirestoreIoT.app */;
 			productType = "com.apple.product-type.application";
 		};
-		821F77FC2228B2570064F7E6 /* WeatherTests */ = {
+		821F77FC2228B2570064F7E6 /* FirestoreIoTTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 821F78092228B2570064F7E6 /* Build configuration list for PBXNativeTarget "WeatherTests" */;
+			buildConfigurationList = 821F78092228B2570064F7E6 /* Build configuration list for PBXNativeTarget "FirestoreIoTTests" */;
 			buildPhases = (
 				821F77F92228B2570064F7E6 /* Sources */,
 				821F77FA2228B2570064F7E6 /* Frameworks */,
@@ -156,9 +154,9 @@
 			dependencies = (
 				821F77FF2228B2570064F7E6 /* PBXTargetDependency */,
 			);
-			name = WeatherTests;
+			name = FirestoreIoTTests;
 			productName = WeatherTests;
-			productReference = 821F77FD2228B2570064F7E6 /* WeatherTests.xctest */;
+			productReference = 821F77FD2228B2570064F7E6 /* FirestoreIoTTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -180,7 +178,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 821F77E42228B2550064F7E6 /* Build configuration list for PBXProject "Weather" */;
+			buildConfigurationList = 821F77E42228B2550064F7E6 /* Build configuration list for PBXProject "FirestoreIoT" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -193,8 +191,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				821F77E82228B2550064F7E6 /* Weather */,
-				821F77FC2228B2570064F7E6 /* WeatherTests */,
+				821F77E82228B2550064F7E6 /* FirestoreIoT */,
+				821F77FC2228B2570064F7E6 /* FirestoreIoTTests */,
 			);
 		};
 /* End PBXProject section */
@@ -224,16 +222,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				829898E9222DB18600F73B19 /* ForecastTableViewController.swift in Sources */,
-				829898E3222DA0AC00F73B19 /* WeatherBase.swift in Sources */,
-				829898E7222DA38E00F73B19 /* WeatherTableViewController.swift in Sources */,
-				829898E1222D99BC00F73B19 /* WeatherTableViewCell.swift in Sources */,
-				829898F3222E07BA00F73B19 /* FiltersViewController.swift in Sources */,
-				829898F1222DF2A200F73B19 /* Weather.swift in Sources */,
-				829898EB222DB25500F73B19 /* ForecastTableViewCell.swift in Sources */,
+				829898E9222DB18600F73B19 /* SensorTableViewController.swift in Sources */,
+				829898F9222E619500F73B19 /* Sensor.swift in Sources */,
+				829898E7222DA38E00F73B19 /* PiTableViewController.swift in Sources */,
+				829898E1222D99BC00F73B19 /* PiTableViewCell.swift in Sources */,
+				829898F1222DF2A200F73B19 /* Pi.swift in Sources */,
+				829898EB222DB25500F73B19 /* SensorTableViewCell.swift in Sources */,
 				829898F5222E100E00F73B19 /* MembershipViewController.swift in Sources */,
 				821F77EF2228B2550064F7E6 /* ViewController.swift in Sources */,
-				829898EF222DD47A00F73B19 /* ForecastWeather.swift in Sources */,
+				829898F7222E60BA00F73B19 /* FiltersViewController.swift in Sources */,
 				821F77ED2228B2550064F7E6 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -251,7 +248,7 @@
 /* Begin PBXTargetDependency section */
 		821F77FF2228B2570064F7E6 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 821F77E82228B2550064F7E6 /* Weather */;
+			target = 821F77E82228B2550064F7E6 /* FirestoreIoT */;
 			targetProxy = 821F77FE2228B2570064F7E6 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -400,7 +397,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.google.firestore.demoapp.Weather;
+				PRODUCT_BUNDLE_IDENTIFIER = com.google.firestore.demoapp.IoT;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -417,7 +414,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.google.firestore.demoapp.Weather;
+				PRODUCT_BUNDLE_IDENTIFIER = com.google.firestore.demoapp.IoT;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -440,7 +437,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Weather.app/Weather";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FirestoreIoT.app/FirestoreIoT";
 			};
 			name = Debug;
 		};
@@ -460,14 +457,14 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Weather.app/Weather";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FirestoreIoT.app/FirestoreIoT";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		821F77E42228B2550064F7E6 /* Build configuration list for PBXProject "Weather" */ = {
+		821F77E42228B2550064F7E6 /* Build configuration list for PBXProject "FirestoreIoT" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				821F78042228B2570064F7E6 /* Debug */,
@@ -476,7 +473,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		821F78062228B2570064F7E6 /* Build configuration list for PBXNativeTarget "Weather" */ = {
+		821F78062228B2570064F7E6 /* Build configuration list for PBXNativeTarget "FirestoreIoT" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				821F78072228B2570064F7E6 /* Debug */,
@@ -485,7 +482,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		821F78092228B2570064F7E6 /* Build configuration list for PBXNativeTarget "WeatherTests" */ = {
+		821F78092228B2570064F7E6 /* Build configuration list for PBXNativeTarget "FirestoreIoTTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				821F780A2228B2570064F7E6 /* Debug */,

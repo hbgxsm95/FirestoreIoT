@@ -1,5 +1,5 @@
 //
-//  WeatherTableViewController.swift
+//  ForecastTableViewController.swift
 //  Weather
 //
 //  Created by Peiqin Zhao on 3/4/19.
@@ -7,21 +7,35 @@
 //
 
 import UIKit
+import os.log
 
-class WeatherTableViewController: UITableViewController {
+class SensorTableViewController: UITableViewController {
     
     //MARK: Properties
-    var weathers = [Weather]()
+    
+    var weathers = [ForecastWeather]()
+    @IBAction func backButton(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func unwindToMealList(sender: UIStoryboardSegue) {
+        if let sourceViewController = sender.source as? FiltersViewController, let type = sourceViewController.typeTextField.text, let sortBy = sourceViewController.sortByTextField.text {
+            //Mark:
+            // Update the result
+        }
+    }
+    
+    let dayOfWeek = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadSampleWeathers()
-
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -32,32 +46,41 @@ class WeatherTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
+        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        // #warning Incomplete implementation, return the number of rows
         return weathers.count
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        // Table view cells are reused and should be dequeued using a cell identifier.
+        let cellIdentifier = "ForecastTableViewCell"
         
-        let cellIdentifier = "WeatherTableViewCell"
-        
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? WeatherTableViewCell  else {
-            fatalError("The dequeued cell is not an instance of WeatherTableViewCell.")
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? SensorTableViewCell  else {
+            fatalError("The dequeued cell is not an instance of ForecastTableViewCell.")
         }
         
+        // Fetches the appropriate meal for the data source layout.
         let weather = weathers[indexPath.row]
-        
-        // Configure the cell...
-        cell.cityName.text = weather.cityName
-        cell.cityImage.image = weather.cityImage
-        cell.cityTemperature.text = String(format:"%.1f °C", weather.cityTemperature)
-        cell.cityAvgTemperature.text = String(format:"%.1f °C", weather.cityAvgTemperature)
-        cell.cityHumidity.text = String(format:"%.1f ", weather.cityHumidity) + "%"
+        cell.forecastDate.text = weather.date
+        cell.dateImage.image = UIImage(named: dayOfWeek[getDayOfWeek(weather.date)! - 1])
         cell.cityWeather.text = weather.cityWeather
+        cell.cityTemperature.text = String(format:"%.1f °C", weather.cityTemperature)
+        cell.cityHumidity.text = String(format:"%.1f °C", weather.cityHumidity)
         return cell
+    }
+    
+    func getDayOfWeek(_ today:String) -> Int? {
+        let formatter  = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        guard let todayDate = formatter.date(from: today) else { return nil }
+        let myCalendar = Calendar(identifier: .gregorian)
+        let weekDay = myCalendar.component(.weekday, from: todayDate)
+        return weekDay
     }
 
     /*
@@ -95,51 +118,14 @@ class WeatherTableViewController: UITableViewController {
     }
     */
 
-    
+    /*
     // MARK: - Navigation
-
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
         super.prepare(for: segue, sender: sender)
-        
-        
-        
-        guard let forecastTableViewController = segue.destination as? ForecastTableViewController else {
-            fatalError("Unexpected destination: \(segue.destination)")
-        }
-        
-        guard let selectedCityCell = sender as? UIButton else {
-            fatalError("Unexpected sender: \(sender)")
-        }
-        
-        guard let indexPath = tableView.indexPathForRow(at: selectedCityCell.convert(CGPoint.zero, to: tableView)) else {
-            fatalError("The selected cell is not being displayed by the table")
-        }
-        
-        
-        
-        guard let selectedCityWeather = weathers[indexPath.row].forecastWeathers else { return }
-        forecastTableViewController.weathers = selectedCityWeather
     }
-    
-    //MARK: Private Methods
-    
-    private func loadSampleWeathers() {
-        let SFImage = UIImage(named: "SF")
-        
-        var forecastWeathers = [ForecastWeather]()
-        guard let forecastWeather = ForecastWeather(date: "2019-03-04", cityTemperature: 23.01, cityHumidity: 41.3, cityWeather: "Rainy") else {
-            fatalError("Unable to instantiate meal1")
-        }
-        forecastWeathers += [forecastWeather]
-        
-        guard let SFWeather = Weather(cityName: "San Francisco", cityImage: SFImage, cityTemperature: 20.7, cityAvgTemperature: 21.3, cityHumidity: 43, cityWeather: "Cloudy", forecastWeathers: forecastWeathers) else {
-            fatalError("Unable to instantiate sf weather")
-        }
-        
-        weathers += [SFWeather]
-    }
+ */
 
 }

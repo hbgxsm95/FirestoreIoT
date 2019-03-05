@@ -1,5 +1,5 @@
 //
-//  WeatherTableViewCell.swift
+//  ForecastTableViewCell.swift
 //  Weather
 //
 //  Created by Peiqin Zhao on 3/4/19.
@@ -8,15 +8,13 @@
 
 import UIKit
 
-class WeatherTableViewCell: UITableViewCell {
+class SensorTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var cityName: UILabel!
-    @IBOutlet weak var cityImage: UIImageView!
+    @IBOutlet weak var forecastDate: UILabel!
+    @IBOutlet weak var dateImage: UIImageView!
+    @IBOutlet weak var cityWeather: UILabel!
     @IBOutlet weak var cityTemperature: UILabel!
     @IBOutlet weak var cityHumidity: UILabel!
-    @IBOutlet weak var cityWeather: UILabel!
-    @IBOutlet weak var cityAvgTemperature: UILabel!
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -27,5 +25,7 @@ class WeatherTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
+    
 
 }
