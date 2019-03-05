@@ -10,25 +10,32 @@ import UIKit
 
 class Pi {
     //MARK: Properties
-    var errorRate: Double
-    var samplingRate: Double
-    var sampledValue: Double
-    var name: String
+    //TODO: How to represent location
+    var geoInfo: String
+    var cpuUsage: Double
+    var cpuTemperature: Double
+    var memoryUsage: Double
+    var diskUsage: Double
+    var sensors = [Sensor]()
     
-    
-    init?(errorRate: Double, samplingRate: Double, sampledValue: Double, name: String) {
+    init?(geoInfo: String, cpuUsage: Double, cpuTemperature: Double, memoryUsage: Double, diskUsage: Double) {
         
-        guard samplingRate > 0 && samplingRate < 100 else {
+        guard cpuUsage > 0 && cpuUsage < 100 else {
             return nil
         }
         
-        guard errorRate > 0 && errorRate < 100 else {
+        guard memoryUsage > 0 && memoryUsage < 100 else {
             return nil
         }
         
-        self.errorRate = errorRate
-        self.samplingRate = samplingRate
-        self.sampledValue = sampledValue
-        self.name = name
+        guard diskUsage > 0 && diskUsage < 100 else {
+            return nil
+        }
+        
+        self.geoInfo = geoInfo
+        self.cpuUsage = cpuUsage
+        self.cpuTemperature = cpuTemperature
+        self.memoryUsage = memoryUsage
+        self.diskUsage = diskUsage
     }
 }
