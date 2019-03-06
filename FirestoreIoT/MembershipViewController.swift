@@ -7,16 +7,24 @@
 //
 
 import UIKit
-
+import FirebaseUI
 class MembershipViewController: UIViewController {
 
     @IBAction func membershipButton(_ sender: Any) {
-        //TODO: Authentication
+        let auth = FUIAuth.defaultAuthUI()!
+        if auth.auth?.currentUser == nil {
+            auth.providers = []
+            present(auth.authViewController(), animated: true, completion: nil)
+        }
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
     }
 
     override func didReceiveMemoryWarning() {
