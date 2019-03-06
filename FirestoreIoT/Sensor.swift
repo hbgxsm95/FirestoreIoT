@@ -13,7 +13,7 @@ class Sensor {
     var errorRate: Double
     var samplingRate: Int
     var sampledValue: Double
-    var name: String
+    var model: String
     var image: UIImage?
     
     
@@ -34,7 +34,7 @@ class Sensor {
         self.errorRate = errorRate
         self.samplingRate = samplingRate
         self.sampledValue = sampledValue
-        self.name = name
+        self.model = name
         self.image = image
     }
 }

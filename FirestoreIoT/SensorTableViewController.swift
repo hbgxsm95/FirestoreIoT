@@ -26,6 +26,37 @@ class SensorTableViewController: UITableViewController {
         if let sourceViewController = sender.source as? FiltersViewController, let model = sourceViewController.model.text, let sortBy = sourceViewController.sortByTextField.text {
             //Mark:
             //TODO: Update the result
+            // Clear the table view firstly.
+            sensors.removeAll()
+            self.tableView.reloadData()
+            
+            // Update the table view
+            let db = Firestore.firestore()
+            var query = db.collection("sensor").whereField("masterId", isEqualTo: self.masterId)
+            query = query.whereField("model", isEqualTo: model).order(by: sortBy)
+            // Whether I need to build index here?
+            query.getDocuments() { (querySnapshot, err) in
+                if let err = err {
+                    print("Error getting documents: \(err)")
+                } else {
+                    for document in querySnapshot!.documents {
+                        // Load all the sensors
+                        let fetchedData = document.data()
+                        let model = fetchedData["model"] as? String ?? ""
+                        let errorRate = fetchedData["errorRate"] as? Double ?? 0.0
+                        let samplingRate = fetchedData["samplingRate"] as? Int ?? 0
+                        let sampledValue = fetchedData["sampledValue"] as? Double ?? 0.0
+                        let sensorImage = UIImage(named: "dht11")
+                        guard let sensor = Sensor(errorRate: errorRate, samplingRate: samplingRate, sampledValue: sampledValue, name: model, image: sensorImage) else {
+                            fatalError("Unable to instantiate Sensor")
+                        }
+                        // Add a new sensor.
+                        let newIndexPath = IndexPath(row: self.sensors.count, section: 0)
+                        self.sensors.append(sensor)
+                        self.tableView.insertRows(at: [newIndexPath], with: .automatic)
+                    }
+                }
+            }
         }
     }
     
@@ -89,7 +120,7 @@ class SensorTableViewController: UITableViewController {
         // Fetches the appropriate meal for the data source layout.
         let sensor = sensors[indexPath.row]
         
-        cell.name.text = sensor.name
+        cell.name.text = sensor.model
         cell.errorRate.text = String(format:"%.2f ", sensor.errorRate) + "%"
         cell.sampledValue.text = String(format:"%.1f °C", sensor.sampledValue)
         cell.samplingRate.text = String(format:"%d QPS", sensor.samplingRate)
