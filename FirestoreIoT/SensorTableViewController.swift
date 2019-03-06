@@ -7,12 +7,14 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseFirestore
 import os.log
 
 class SensorTableViewController: UITableViewController {
     
     //MARK: Properties
-    
+    var masterId: String?
     var sensors = [Sensor]()
     
     @IBAction func backButton(_ sender: Any) {
@@ -33,8 +35,7 @@ class SensorTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
-        
-        
+        loadInitSensor()
     }
 
     override func didReceiveMemoryWarning() {
@@ -119,5 +120,33 @@ class SensorTableViewController: UITableViewController {
         super.prepare(for: segue, sender: sender)
     }
  */
+    
+    //Mark: private function
+    private func loadInitSensor(){
+        let db = Firestore.firestore()
+        //var ref: DocumentReference? = nil
+        db.collection("sensor").whereField("masterId", isEqualTo: self.masterId).getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                for document in querySnapshot!.documents {
+                    // Load all the sensors
+                    let fetchedData = document.data()
+                    let name = document.documentID
+                    let errorRate = fetchedData["errorRate"] as? Double ?? 0.0
+                    let samplingRate = fetchedData["samplingRate"] as? Int ?? 0
+                    let sampledValue = fetchedData["sampledValue"] as? Double ?? 0.0
+                    let sensorImage = UIImage(named: "dht11")
+                    guard let sensor = Sensor(errorRate: errorRate, samplingRate: samplingRate, sampledValue: sampledValue, name: name, image: sensorImage) else {
+                        fatalError("Unable to instantiate Sensor")
+                    }
+                    // Add a new sensor.
+                    let newIndexPath = IndexPath(row: self.sensors.count, section: 0)
+                    self.sensors.append(sensor)
+                    self.tableView.insertRows(at: [newIndexPath], with: .automatic)
+                }
+            }
+        }
+    }
 
 }

@@ -7,7 +7,8 @@
 //
 
 import UIKit
-
+import Firebase
+import FirebaseFirestore
 class PiTableViewController: UITableViewController {
     
     //MARK: Properties
@@ -15,8 +16,8 @@ class PiTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadSamplePis()
-
+        uploadSamplePis()
+        loadInitPis()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -119,26 +120,116 @@ class PiTableViewController: UITableViewController {
         guard let indexPath = tableView.indexPathForRow(at: selectedSensorCell.convert(CGPoint.zero, to: tableView)) else {
             fatalError("The selected cell is not being displayed by the table")
         }
-        sensorTableViewController.sensors = pis[indexPath.row].sensors
+        
+        //sensorTableViewController.sensors = pis[indexPath.row].sensors
+        //Mark: You could use it as cache.
+        sensorTableViewController.masterId = pis[indexPath.row].name
     }
     
     //MARK: Private Methods
     
-    private func loadSamplePis() {
-        let piImage = UIImage(named: "pi")
-        let sensorImage = UIImage(named: "dht11")
+    private func uploadSamplePis(){
+        /*
+         var name: String
+         //TODO: How to represent location
+         var geoInfo: String
+         var cpuImage: UIImage?
+         var gpuTemperature: Double
+         var cpuTemperature: Double
+         var memoryUsage: Double
+         var diskUsage: Double
+         */
+        let db = Firestore.firestore()
         
-        guard let sensor = Sensor(errorRate: 0.01, samplingRate: 30, sampledValue: 25, name: "Rogue", image: sensorImage) else {
-            fatalError("Unable to instantiate Sensor DHT11")
+        db.collection("board").document("Iron").setData([
+            "geoInfo": "San Francisco",
+            "cpuImage": "pi",
+            "gpuTemperature": 25.6,
+            "cpuTemperature": 54.1,
+            "memoryUsage": 40.3,
+            "diskUsage": 21.4,
+        ]) { err in
+            if let err = err {
+                print("Error adding document: \(err)")
+            } else {
+                //print("Document added with ID: \(ref!.documentID)")
+                print("Document Added!")
+            }
         }
-        
-        guard let pi = Pi(name: "Iron", geoInfo: "San Francisco", cpuImage: piImage, gpuTemperature: 56, cpuTemperature: 65, memoryUsage: 24, diskUsage: 45) else {
-            fatalError("Unable to instantiate Pi")
-        }
-        
-        pi.sensors += [sensor]
-        
-        pis += [pi]
-    }
 
+        db.collection("board").document("Mecury").setData([
+            "geoInfo": "San Francisco",
+            "cpuImage": "pi",
+            "gpuTemperature": 25.6,
+            "cpuTemperature": 54.1,
+            "memoryUsage": 40.3,
+            "diskUsage": 21.4
+        ]) { err in
+            if let err = err {
+                print("Error adding document: \(err)")
+            } else {
+                //print("Document added with ID: \(ref!.documentID)")
+                print("Document Added!")
+            }
+        }
+        
+        db.collection("sensor").document("Rogue").setData([
+            "masterId": "Iron",
+            "errorRate": 0.01,
+            "samplingRate": 40,
+            "sampledValue": 25.6
+        ]) { err in
+            if let err = err {
+                print("Error adding document: \(err)")
+            } else {
+                // print("Document added with ID: \(ref!.documentID)")
+                // print("Document Added!")
+            }
+        }
+        
+        db.collection("sensor").document("Wayne").setData([
+            "masterId": "Mecury",
+            "errorRate": 0.01,
+            "samplingRate": 40,
+            "sampledValue": 25.6
+        ]) { err in
+            if let err = err {
+                print("Error adding document: \(err)")
+            } else {
+                //print("Document added with ID: \(ref!.documentID)")
+                //print("Document Added!")
+            }
+        }
+    }
+    
+    private func loadInitPis() {
+        let db = Firestore.firestore()
+        //var ref: DocumentReference? = nil
+        db.collection("board").getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                for document in querySnapshot!.documents {
+                    // print("\(document.documentID) => \(document.data())")
+                    // Load all the boards
+                    let fetchedData = document.data()
+                    let name = document.documentID
+                    let geoInfo = fetchedData["geoInfo"] as? String ?? ""
+                    let cpuImage = UIImage(named: fetchedData["cpuImage"] as? String ?? "pi")
+                    let gpuTemperature = fetchedData["gpuTemperature"] as? Double ?? 0.0
+                    let cpuTemperature = fetchedData["cpuTemperature"] as? Double ?? 0.0
+                    let memoryUsage = fetchedData["memoryUsage"] as? Double ?? 0.0
+                    let diskUsage = fetchedData["diskUsage"] as? Double ?? 0.0
+                    guard let pi = Pi(name: name, geoInfo: geoInfo, cpuImage: cpuImage, gpuTemperature: gpuTemperature, cpuTemperature: cpuTemperature, memoryUsage: memoryUsage, diskUsage: diskUsage) else {
+                        fatalError("Unable to instantiate Pi")
+                    }
+                    // Add a new meal.
+                    let newIndexPath = IndexPath(row: self.pis.count, section: 0)
+                    self.pis.append(pi)
+                    //meals.append(meal)
+                    self.tableView.insertRows(at: [newIndexPath], with: .automatic)
+                }
+            }
+        }
+    }
 }
