@@ -12,19 +12,30 @@ class MembershipViewController: UIViewController {
 
     @IBAction func membershipButton(_ sender: Any) {
         let auth = FUIAuth.defaultAuthUI()!
-        if auth.auth?.currentUser == nil {
-            auth.providers = []
-            present(auth.authViewController(), animated: true, completion: nil)
-        }
+        auth.providers = []
+        present(auth.authViewController(), animated: true, completion: nil)
+    }
+    
+    @IBAction func nonMembershipButton(_ sender: Any) {
+        self.performSegue(withIdentifier: "showIdentifier", sender: Any?.self)
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        let auth = FUIAuth.defaultAuthUI()!
+        try? auth.signOut()
         
         // Do any additional setup after loading the view.
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        let auth = FUIAuth.defaultAuthUI()!
+        if auth.auth?.currentUser == nil{
+            // Don't do anything here
+        } else{
+            self.performSegue(withIdentifier: "showIdentifier", sender: Any?.self)
+        }
+        
     }
 
     override func didReceiveMemoryWarning() {

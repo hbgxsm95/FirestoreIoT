@@ -81,8 +81,8 @@ class FiltersViewController: UIViewController, UIPickerViewDataSource, UIPickerV
         return pickerView
     }()
     
-    private let sortByOptions = ["Sampling Rate", "Error Rate", "Sampled Value"]
-    private let modelOptions = ["Rogue", "Cloud", "Sunny", "All"]
+    private let sortByOptions = ["samplingRate", "errorRate", "sampledValue"]
+    private let modelOptions = ["Rogue", "Wayne", "Sunny", "All"]
     
     // MARK: UIPickerViewDataSource
     

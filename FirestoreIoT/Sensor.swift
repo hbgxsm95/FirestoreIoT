@@ -17,7 +17,7 @@ class Sensor {
     var image: UIImage?
     
     
-    init?(errorRate: Double, samplingRate: Int, sampledValue: Double, name: String, image: UIImage?) {
+    init?(errorRate: Double, samplingRate: Int, sampledValue: Double, model: String, image: UIImage?) {
         
         guard samplingRate > 0 && samplingRate < 100 else {
             return nil
@@ -27,14 +27,14 @@ class Sensor {
             return nil
         }
         
-        guard !name.isEmpty else {
+        guard !model.isEmpty else {
             return nil
         }
         
         self.errorRate = errorRate
         self.samplingRate = samplingRate
         self.sampledValue = sampledValue
-        self.model = name
+        self.model = model
         self.image = image
     }
 }

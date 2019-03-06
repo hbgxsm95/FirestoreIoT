@@ -17,12 +17,17 @@ class PiTableViewCell: UITableViewCell {
     @IBOutlet weak var cpuTemperature: UILabel!
     @IBOutlet weak var memoryUsage: UILabel!
     @IBOutlet weak var diskUsage: UILabel!
-    
+    var action : (() -> Void)? = nil
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
 
+    @IBAction func watchButton(_ sender: Any) {
+        if let btnAction = self.action{
+            btnAction()
+        }
+    }
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 

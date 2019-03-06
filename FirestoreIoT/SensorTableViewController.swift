@@ -47,7 +47,7 @@ class SensorTableViewController: UITableViewController {
                         let samplingRate = fetchedData["samplingRate"] as? Int ?? 0
                         let sampledValue = fetchedData["sampledValue"] as? Double ?? 0.0
                         let sensorImage = UIImage(named: "dht11")
-                        guard let sensor = Sensor(errorRate: errorRate, samplingRate: samplingRate, sampledValue: sampledValue, name: model, image: sensorImage) else {
+                        guard let sensor = Sensor(errorRate: errorRate, samplingRate: samplingRate, sampledValue: sampledValue, model: model, image: sensorImage) else {
                             fatalError("Unable to instantiate Sensor")
                         }
                         // Add a new sensor.
@@ -57,6 +57,7 @@ class SensorTableViewController: UITableViewController {
                     }
                 }
             }
+            
         }
     }
     
@@ -67,7 +68,10 @@ class SensorTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
-        
+        let auth = FUIAuth.defaultAuthUI()!
+        if auth.auth?.currentUser != nil {
+            loadInitSensor()
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -86,8 +90,6 @@ class SensorTableViewController: UITableViewController {
             
             // show the alert
             self.present(alert, animated: true, completion: nil)
-        } else{
-            loadInitSensor()
         }
     }
 
@@ -185,12 +187,12 @@ class SensorTableViewController: UITableViewController {
                 for document in querySnapshot!.documents {
                     // Load all the sensors
                     let fetchedData = document.data()
-                    let name = document.documentID
+                    let name = fetchedData["model"] as? String ?? ""
                     let errorRate = fetchedData["errorRate"] as? Double ?? 0.0
                     let samplingRate = fetchedData["samplingRate"] as? Int ?? 0
                     let sampledValue = fetchedData["sampledValue"] as? Double ?? 0.0
                     let sensorImage = UIImage(named: "dht11")
-                    guard let sensor = Sensor(errorRate: errorRate, samplingRate: samplingRate, sampledValue: sampledValue, name: name, image: sensorImage) else {
+                    guard let sensor = Sensor(errorRate: errorRate, samplingRate: samplingRate, sampledValue: sampledValue, model: name, image: sensorImage) else {
                         fatalError("Unable to instantiate Sensor")
                     }
                     // Add a new sensor.

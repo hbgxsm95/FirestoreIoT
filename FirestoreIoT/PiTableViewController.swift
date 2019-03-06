@@ -50,6 +50,25 @@ class PiTableViewController: UITableViewController {
             fatalError("The dequeued cell is not an instance of WeatherTableViewCell.")
         }
         
+        cell.action = {
+            let db = Firestore.firestore()
+            db.collection("board").document("Iron")
+                .addSnapshotListener { documentSnapshot, error in
+                    guard let document = documentSnapshot else {
+                        print("Error fetching document: \(error!)")
+                        return
+                    }
+                    guard let data = document.data() else {
+                        print("Document data was empty.")
+                        return
+                    }
+                    // Mark: What if a document has a lot of fields?
+                    // TODO: Finish the UI update
+                    
+            }
+
+        }
+        
         let pi = pis[indexPath.row]
         
         // Configure the cell...
@@ -178,7 +197,8 @@ class PiTableViewController: UITableViewController {
             "masterId": "Iron",
             "errorRate": 0.01,
             "samplingRate": 40,
-            "sampledValue": 25.6
+            "sampledValue": 25.6,
+            "model": "Rogue"
         ]) { err in
             if let err = err {
                 print("Error adding document: \(err)")
@@ -192,7 +212,8 @@ class PiTableViewController: UITableViewController {
             "masterId": "Mecury",
             "errorRate": 0.01,
             "samplingRate": 40,
-            "sampledValue": 25.6
+            "sampledValue": 25.6,
+            "model" : "Wayne"
         ]) { err in
             if let err = err {
                 print("Error adding document: \(err)")
