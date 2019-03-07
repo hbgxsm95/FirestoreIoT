@@ -32,42 +32,31 @@ while True:
 	diskUsage = random.uniform(30, 60)
 	gpuTemperature = random.uniform(50, 80)
 	memoryUsage = random.uniform(30, 60)
-	docBoard_ref.set({
-		u'cpuImage': u'pi',
+	docBoard_ref.update({
 		u'cpuTemperature': cpuTemperature,
 		u'diskUsage': diskUsage,
-		u'geoInfo': u'San Diegos',
 		u'gpuTemperature': gpuTemperature,
 		u'memoryUsage': memoryUsage})
 
 	errorRate = random.uniform(0, 1)
 	sampledValue = random.uniform(20,30)
-	docSensorA_ref.set({
+	docSensorA_ref.update({
 		u'errorRate': errorRate,
-		u'masterId': unicode(masterId),
-		u'model': u'DHT11',
-		u'sampledValue': sampledValue,
-		u'samplingRate': samplingARate
+		u'sampledValue': sampledValue
 		})
 
 	errorRate = random.uniform(0, 1)
 	sampledValue = random.uniform(20,30)
-	docSensorB_ref.set({
+	docSensorB_ref.update({
 		u'errorRate': errorRate,
-		u'masterId': unicode(masterId),
-		u'model': u'DHT11',
-		u'sampledValue': sampledValue,
-		u'samplingRate': samplingBRate
+		u'sampledValue': sampledValue
 		})
 
 	errorRate = random.uniform(0, 1)
 	sampledValue = random.uniform(20,30)
-	docSensorC_ref.set({
+	docSensorC_ref.update({
 		u'errorRate': errorRate,
-		u'masterId': unicode(masterId),
-		u'model': u'DHT22',
-		u'sampledValue': sampledValue,
-		u'samplingRate': samplingBRate
+		u'sampledValue': sampledValue
 		})
 
 	print "Update sensor info successfully"

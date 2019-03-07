@@ -23,7 +23,6 @@ class MembershipViewController: UIViewController {
         super.viewDidLoad()
         let auth = FUIAuth.defaultAuthUI()!
         try? auth.signOut()
-        
         // Do any additional setup after loading the view.
     }
     

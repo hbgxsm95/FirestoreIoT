@@ -30,9 +30,11 @@ class PiTableViewController: UITableViewController {
         let auth = FUIAuth.defaultAuthUI()!
         if auth.auth!.currentUser == nil {
             // Sign In Status
+            accessButtonOutlet.title = "Sign Out"
             self.present(auth.authViewController(), animated: true, completion: nil)
         } else{
             try? auth.signOut()
+            accessButtonOutlet.title = "Sign In"
             // TODO: Update the status
         }
         
