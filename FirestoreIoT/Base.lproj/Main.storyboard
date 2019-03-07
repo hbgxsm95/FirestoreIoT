@@ -138,12 +138,20 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="X4H-Pp-zDs">
+                        <barButtonItem key="leftBarButtonItem" title="Sign In" id="Q2L-SM-89x">
+                            <connections>
+                                <action selector="accessButton:" destination="i7U-Rn-6Bq" id="90b-Lg-UzT"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Refresh" id="14v-m3-i9C">
                             <connections>
                                 <action selector="refreshButton:" destination="i7U-Rn-6Bq" id="bl5-wC-6VU"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="accessButtonOutlet" destination="Q2L-SM-89x" id="IJI-Cn-Tbd"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gPe-v6-ly9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

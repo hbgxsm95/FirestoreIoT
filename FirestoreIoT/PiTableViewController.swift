@@ -25,6 +25,19 @@ class PiTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
+    @IBOutlet weak var accessButtonOutlet: UIBarButtonItem!
+    @IBAction func accessButton(_ sender: Any) {
+        let auth = FUIAuth.defaultAuthUI()!
+        if auth.auth!.currentUser == nil {
+            // Sign In Status
+            self.present(auth.authViewController(), animated: true, completion: nil)
+        } else{
+            try? auth.signOut()
+            // TODO: Update the status
+        }
+        
+        
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

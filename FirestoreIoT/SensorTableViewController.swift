@@ -85,16 +85,7 @@ class SensorTableViewController: UITableViewController {
             // create the alert
             let alert = UIAlertController(title: "Warning", message: "You don't have access to sensors if no membership", preferredStyle: .alert)
             // add the actions (buttons)
-            alert.addAction(UIAlertAction(title: "Log In", style: .default, handler: {(UIAlertAction)->Void in 
-                auth.providers = []
-                self.present(auth.authViewController(), animated: true, completion: nil)
-                if auth.auth?.currentUser != nil {
-                    self.loadInitSensor()
-                }
-                return
-            }))
             alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-            
             // show the alert
             self.present(alert, animated: true, completion: nil)
         }
