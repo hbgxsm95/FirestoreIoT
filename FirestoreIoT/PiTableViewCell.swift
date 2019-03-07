@@ -17,16 +17,29 @@ class PiTableViewCell: UITableViewCell {
     @IBOutlet weak var cpuTemperature: UILabel!
     @IBOutlet weak var memoryUsage: UILabel!
     @IBOutlet weak var diskUsage: UILabel!
-    var action : (() -> Void)? = nil
+    var attachAction : (() -> Void)? = nil
+    var detachAction : (() -> Void)? = nil
+    var flag = false
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
 
+    @IBOutlet weak var watchButtonOutlet: UIButton!
     @IBAction func watchButton(_ sender: Any) {
-        if let btnAction = self.action{
-            btnAction()
+        if flag == false{
+            if let btnAction = self.attachAction{
+                watchButtonOutlet.setTitle("Detach", for: .normal)
+                btnAction()
+            }
+        } else{
+            if let btnAction = self.detachAction{
+                btnAction()
+                watchButtonOutlet.setTitle("Watch", for: .normal)
+            }
         }
+        flag = !flag
+        
     }
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)

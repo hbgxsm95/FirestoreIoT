@@ -128,6 +128,7 @@
                                     <outlet property="geoInfo" destination="OTy-jI-00Q" id="aIN-wr-WvE"/>
                                     <outlet property="gpuTemperature" destination="Zga-v5-gI0" id="wFA-0g-bA5"/>
                                     <outlet property="memoryUsage" destination="BWO-uU-jfy" id="uLW-E0-QEr"/>
+                                    <outlet property="watchButtonOutlet" destination="08t-6l-DYD" id="fC9-6H-xp3"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

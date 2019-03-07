@@ -14,7 +14,7 @@ class PiTableViewController: UITableViewController {
     
     //MARK: Properties
     var pis = [Pi]()
-    
+    var watchListener: ListenerRegistration?
     override func viewDidLoad() {
         super.viewDidLoad()
         uploadSamplePis()
@@ -50,23 +50,30 @@ class PiTableViewController: UITableViewController {
             fatalError("The dequeued cell is not an instance of WeatherTableViewCell.")
         }
         
-        cell.action = {
+        cell.attachAction = {
             let db = Firestore.firestore()
-            db.collection("board").document("Iron")
+            self.watchListener = db.collection("board").document(cell.cpuName.text!)
                 .addSnapshotListener { documentSnapshot, error in
                     guard let document = documentSnapshot else {
                         print("Error fetching document: \(error!)")
                         return
                     }
-                    guard let data = document.data() else {
+                    guard let fetchedData = document.data() else {
                         print("Document data was empty.")
                         return
                     }
                     // Mark: What if a document has a lot of fields?
-                    // TODO: Finish the UI update
+                    cell.geoInfo.text = fetchedData["geoInfo"] as? String ?? ""
+                    cell.gpuTemperature.text = String(format:"%.1f ", fetchedData["gpuTemperature"] as? Double ?? 0.0) + "°C"
+                    cell.cpuTemperature.text = String(format:"%.1f ", fetchedData["cpuTemperature"] as? Double ?? 0.0) + "°C"
+                    cell.memoryUsage.text = String(format:"%.1f ", fetchedData["memoryUsage"] as? Double ?? 0.0) + "%"
+                    cell.diskUsage.text = String(format:"%.1f ", fetchedData["diskUsage"] as? Double ?? 0.0) + "%"
                     
             }
-
+        }
+        
+        cell.detachAction = {
+            self.watchListener?.remove()
         }
         
         let pi = pis[indexPath.row]
@@ -149,16 +156,6 @@ class PiTableViewController: UITableViewController {
     //MARK: Private Methods
     
     private func uploadSamplePis(){
-        /*
-         var name: String
-         //TODO: How to represent location
-         var geoInfo: String
-         var cpuImage: UIImage?
-         var gpuTemperature: Double
-         var cpuTemperature: Double
-         var memoryUsage: Double
-         var diskUsage: Double
-         */
         let db = Firestore.firestore()
         
         db.collection("board").document("Iron").setData([
