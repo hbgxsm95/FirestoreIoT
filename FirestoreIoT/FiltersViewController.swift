@@ -82,7 +82,7 @@ class FiltersViewController: UIViewController, UIPickerViewDataSource, UIPickerV
     }()
     
     private let sortByOptions = ["samplingRate", "errorRate", "sampledValue"]
-    private let modelOptions = ["Rogue", "Wayne", "Sunny", "All"]
+    private let modelOptions = ["DHT11", "DHT22", "ALL"]
     
     // MARK: UIPickerViewDataSource
     

@@ -33,7 +33,11 @@ class SensorTableViewController: UITableViewController {
             // Update the table view
             let db = Firestore.firestore()
             var query = db.collection("sensor").whereField("masterId", isEqualTo: self.masterId)
-            query = query.whereField("model", isEqualTo: model).order(by: sortBy)
+            if model != "ALL"{
+                query = query.whereField("model", isEqualTo: model).order(by: sortBy)
+            } else if !sortBy.isEmpty {
+                query = query.order(by: sortBy)
+            }
             // Whether I need to build index here?
             query.getDocuments() { (querySnapshot, err) in
                 if let err = err {
@@ -46,7 +50,7 @@ class SensorTableViewController: UITableViewController {
                         let errorRate = fetchedData["errorRate"] as? Double ?? 0.0
                         let samplingRate = fetchedData["samplingRate"] as? Int ?? 0
                         let sampledValue = fetchedData["sampledValue"] as? Double ?? 0.0
-                        let sensorImage = UIImage(named: "dht11")
+                        let sensorImage = UIImage(named: model)
                         guard let sensor = Sensor(errorRate: errorRate, samplingRate: samplingRate, sampledValue: sampledValue, model: model, image: sensorImage) else {
                             fatalError("Unable to instantiate Sensor")
                         }
@@ -84,6 +88,9 @@ class SensorTableViewController: UITableViewController {
             alert.addAction(UIAlertAction(title: "Log In", style: .default, handler: {(UIAlertAction)->Void in 
                 auth.providers = []
                 self.present(auth.authViewController(), animated: true, completion: nil)
+                if auth.auth?.currentUser != nil {
+                    self.loadInitSensor()
+                }
                 return
             }))
             alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
@@ -191,7 +198,7 @@ class SensorTableViewController: UITableViewController {
                     let errorRate = fetchedData["errorRate"] as? Double ?? 0.0
                     let samplingRate = fetchedData["samplingRate"] as? Int ?? 0
                     let sampledValue = fetchedData["sampledValue"] as? Double ?? 0.0
-                    let sensorImage = UIImage(named: "dht11")
+                    let sensorImage = UIImage(named: name)
                     guard let sensor = Sensor(errorRate: errorRate, samplingRate: samplingRate, sampledValue: sampledValue, model: name, image: sensorImage) else {
                         fatalError("Unable to instantiate Sensor")
                     }

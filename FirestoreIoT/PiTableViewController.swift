@@ -17,7 +17,6 @@ class PiTableViewController: UITableViewController {
     var watchListener: ListenerRegistration?
     override func viewDidLoad() {
         super.viewDidLoad()
-        uploadSamplePis()
         loadInitPis()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -42,6 +41,11 @@ class PiTableViewController: UITableViewController {
     }
 
     
+    @IBAction func refreshButton(_ sender: Any) {
+        pis.removeAll()
+        self.tableView.reloadData()
+        self.loadInitPis()
+    }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cellIdentifier = "PiTableViewCell"
@@ -154,72 +158,6 @@ class PiTableViewController: UITableViewController {
     }
     
     //MARK: Private Methods
-    
-    private func uploadSamplePis(){
-        let db = Firestore.firestore()
-        
-        db.collection("board").document("Iron").setData([
-            "geoInfo": "San Francisco",
-            "cpuImage": "pi",
-            "gpuTemperature": 25.6,
-            "cpuTemperature": 54.1,
-            "memoryUsage": 40.3,
-            "diskUsage": 21.4,
-        ]) { err in
-            if let err = err {
-                print("Error adding document: \(err)")
-            } else {
-                //print("Document added with ID: \(ref!.documentID)")
-                print("Document Added!")
-            }
-        }
-
-        db.collection("board").document("Mecury").setData([
-            "geoInfo": "San Francisco",
-            "cpuImage": "pi",
-            "gpuTemperature": 25.6,
-            "cpuTemperature": 54.1,
-            "memoryUsage": 40.3,
-            "diskUsage": 21.4
-        ]) { err in
-            if let err = err {
-                print("Error adding document: \(err)")
-            } else {
-                //print("Document added with ID: \(ref!.documentID)")
-                print("Document Added!")
-            }
-        }
-        
-        db.collection("sensor").document("Rogue").setData([
-            "masterId": "Iron",
-            "errorRate": 0.01,
-            "samplingRate": 40,
-            "sampledValue": 25.6,
-            "model": "Rogue"
-        ]) { err in
-            if let err = err {
-                print("Error adding document: \(err)")
-            } else {
-                // print("Document added with ID: \(ref!.documentID)")
-                // print("Document Added!")
-            }
-        }
-        
-        db.collection("sensor").document("Wayne").setData([
-            "masterId": "Mecury",
-            "errorRate": 0.01,
-            "samplingRate": 40,
-            "sampledValue": 25.6,
-            "model" : "Wayne"
-        ]) { err in
-            if let err = err {
-                print("Error adding document: \(err)")
-            } else {
-                //print("Document added with ID: \(ref!.documentID)")
-                //print("Document Added!")
-            }
-        }
-    }
     
     private func loadInitPis() {
         let db = Firestore.firestore()

@@ -13,6 +13,7 @@ projectId = sys.argv[1]
 masterId = sys.argv[2]
 sensorAId = "Jarvis"
 sensorBId = "Friday"
+sensorCId = "Rogue"
 # Use the application default credentials
 cred = credentials.ApplicationDefault()
 firebase_admin.initialize_app(cred, {
@@ -23,6 +24,7 @@ db = firestore.client()
 docBoard_ref = db.collection(u'board').document(masterId)
 docSensorA_ref = db.collection(u'sensor').document(sensorAId)
 docSensorB_ref = db.collection(u'sensor').document(sensorBId)
+docSensorC_ref = db.collection(u'sensor').document(sensorCId)
 samplingARate = random.randint(10,30)
 samplingBRate = random.randint(10,30)
 while True:
@@ -43,7 +45,7 @@ while True:
 	docSensorA_ref.set({
 		u'errorRate': errorRate,
 		u'masterId': unicode(masterId),
-		u'model':unicode(sensorAId),
+		u'model': u'DHT11',
 		u'sampledValue': sampledValue,
 		u'samplingRate': samplingARate
 		})
@@ -53,10 +55,21 @@ while True:
 	docSensorB_ref.set({
 		u'errorRate': errorRate,
 		u'masterId': unicode(masterId),
-		u'model':unicode(sensorBId),
+		u'model': u'DHT11',
 		u'sampledValue': sampledValue,
 		u'samplingRate': samplingBRate
 		})
+
+	errorRate = random.uniform(0, 1)
+	sampledValue = random.uniform(20,30)
+	docSensorC_ref.set({
+		u'errorRate': errorRate,
+		u'masterId': unicode(masterId),
+		u'model': u'DHT22',
+		u'sampledValue': sampledValue,
+		u'samplingRate': samplingBRate
+		})
+
 	print "Update sensor info successfully"
 	time.sleep(5)
 
