@@ -29,6 +29,7 @@ samplingARate = random.randint(10,30)
 samplingBRate = random.randint(10,30)
 samplingCRate = random.randint(10,30)
 while True:
+	name = raw_input("Type return to update the sensor Data on the board: " + masterId)
 	cpuTemperature = random.uniform(40, 60)
 	diskUsage = random.uniform(30, 60)
 	gpuTemperature = random.uniform(50, 80)
@@ -72,5 +73,4 @@ while True:
 
 	print "Update sensor info successfully"
 	batch.commit()
-	time.sleep(5)
 

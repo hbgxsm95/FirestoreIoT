@@ -31,8 +31,6 @@ class PiTableViewController: UITableViewController {
             alert.addAction(UIAlertAction(title: "Back", style: .cancel, handler: nil))
             // show the alert
             self.present(alert, animated: true, completion: nil)
-        } else{
-            loadInitPis()
         }
     }
     
@@ -41,7 +39,9 @@ class PiTableViewController: UITableViewController {
         let auth = FUIAuth.defaultAuthUI()!
         if auth.auth?.currentUser != nil {
             accessButtonOutlet.title = "Sign Out"
-            print( auth.auth?.currentUser?.email)
+            pis.removeAll()
+            self.tableView.reloadData()
+            loadInitPis()
         } else{
             accessButtonOutlet.title = "Sign In"
         }
@@ -61,6 +61,8 @@ class PiTableViewController: UITableViewController {
             accessButtonOutlet.title = "Sign In"
             // show the alert
             self.present(alert, animated: true, completion: nil)
+            pis.removeAll()
+            self.tableView.reloadData()
         }
         
         
@@ -202,10 +204,10 @@ class PiTableViewController: UITableViewController {
     private func loadInitPis() {
         let db = Firestore.firestore()
         //var ref: DocumentReference? = nil
-        let docRef = db.collection("board")
-        
-        
-        db.collection("board").getDocuments() { (querySnapshot, err) in
+        let auth = FUIAuth.defaultAuthUI()!
+        db.collection("board")
+            .whereField("owner", isEqualTo: auth.auth?.currentUser?.email )
+            .getDocuments() { (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
             } else {
