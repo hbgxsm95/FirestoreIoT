@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 import FirebaseUI
-import FirebaseFirestore
+//import FirebaseFirestore
 class PiTableViewController: UITableViewController {
     
     //MARK: Properties
@@ -17,12 +17,34 @@ class PiTableViewController: UITableViewController {
     var watchListener: ListenerRegistration?
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadInitPis()
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        let auth = FUIAuth.defaultAuthUI()!
+        if auth.auth?.currentUser == nil {
+            // create the alert
+            let alert = UIAlertController(title: "Warning", message: "You don't have access to any board if no login in", preferredStyle: .alert)
+            // add the actions (buttons)
+            alert.addAction(UIAlertAction(title: "Back", style: .cancel, handler: nil))
+            // show the alert
+            self.present(alert, animated: true, completion: nil)
+        } else{
+            loadInitPis()
+        }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        let auth = FUIAuth.defaultAuthUI()!
+        if auth.auth?.currentUser != nil {
+            accessButtonOutlet.title = "Sign Out"
+            print( auth.auth?.currentUser?.email)
+        } else{
+            accessButtonOutlet.title = "Sign In"
+        }
     }
 
     @IBOutlet weak var accessButtonOutlet: UIBarButtonItem!
@@ -30,12 +52,15 @@ class PiTableViewController: UITableViewController {
         let auth = FUIAuth.defaultAuthUI()!
         if auth.auth!.currentUser == nil {
             // Sign In Status
-            accessButtonOutlet.title = "Sign Out"
             self.present(auth.authViewController(), animated: true, completion: nil)
         } else{
             try? auth.signOut()
+            let alert = UIAlertController(title: "Notice", message: "You've signed out!", preferredStyle: .alert)
+            // add the actions (buttons)
+            alert.addAction(UIAlertAction(title: "Back", style: .cancel, handler: nil))
             accessButtonOutlet.title = "Sign In"
-            // TODO: Update the status
+            // show the alert
+            self.present(alert, animated: true, completion: nil)
         }
         
         
@@ -59,7 +84,7 @@ class PiTableViewController: UITableViewController {
     @IBAction func refreshButton(_ sender: Any) {
         pis.removeAll()
         self.tableView.reloadData()
-        self.loadInitPis()
+        loadInitPis()
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
@@ -177,6 +202,9 @@ class PiTableViewController: UITableViewController {
     private func loadInitPis() {
         let db = Firestore.firestore()
         //var ref: DocumentReference? = nil
+        let docRef = db.collection("board")
+        
+        
         db.collection("board").getDocuments() { (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
@@ -192,6 +220,7 @@ class PiTableViewController: UITableViewController {
                     let cpuTemperature = fetchedData["cpuTemperature"] as? Double ?? 0.0
                     let memoryUsage = fetchedData["memoryUsage"] as? Double ?? 0.0
                     let diskUsage = fetchedData["diskUsage"] as? Double ?? 0.0
+                    let owner = fetchedData["owner"] as? String ?? ""
                     guard let pi = Pi(name: name, geoInfo: geoInfo, cpuImage: cpuImage, gpuTemperature: gpuTemperature, cpuTemperature: cpuTemperature, memoryUsage: memoryUsage, diskUsage: diskUsage) else {
                         fatalError("Unable to instantiate Pi")
                     }

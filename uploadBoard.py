@@ -27,6 +27,7 @@ docSensorB_ref = db.collection(u'sensor').document(sensorBId)
 docSensorC_ref = db.collection(u'sensor').document(sensorCId)
 samplingARate = random.randint(10,30)
 samplingBRate = random.randint(10,30)
+samplingCRate = random.randint(10,30)
 while True:
 	cpuTemperature = random.uniform(40, 60)
 	diskUsage = random.uniform(30, 60)
@@ -38,27 +39,38 @@ while True:
 		u'gpuTemperature': gpuTemperature,
 		u'memoryUsage': memoryUsage})
 
+	batch = db.batch()
 	errorRate = random.uniform(0, 1)
 	sampledValue = random.uniform(20,30)
-	docSensorA_ref.update({
+	batch.set(docSensorA_ref, {
+		u'masterId': u"Stark",
+		u"model": u"DHT11",
+		u"samplingRate": samplingARate,
 		u'errorRate': errorRate,
 		u'sampledValue': sampledValue
 		})
 
 	errorRate = random.uniform(0, 1)
 	sampledValue = random.uniform(20,30)
-	docSensorB_ref.update({
+	batch.set(docSensorB_ref, {
+		u'masterId': u"Stark",
+		u"model": u"DHT11",
+		u"samplingRate": samplingBRate,
 		u'errorRate': errorRate,
 		u'sampledValue': sampledValue
 		})
 
 	errorRate = random.uniform(0, 1)
 	sampledValue = random.uniform(20,30)
-	docSensorC_ref.update({
+	batch.set(docSensorC_ref, {
+		u'masterId': u"Stark",
+		u"model": u"DHT22",
+		u"samplingRate": samplingCRate,
 		u'errorRate': errorRate,
 		u'sampledValue': sampledValue
 		})
 
 	print "Update sensor info successfully"
+	batch.commit()
 	time.sleep(5)
 

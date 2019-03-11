@@ -72,23 +72,11 @@ class SensorTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
-        let auth = FUIAuth.defaultAuthUI()!
-        if auth.auth?.currentUser != nil {
-            loadInitSensor()
-        }
+        loadInitSensor()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        let auth = FUIAuth.defaultAuthUI()!
-        if auth.auth?.currentUser == nil {
-            // create the alert
-            let alert = UIAlertController(title: "Warning", message: "You don't have access to sensors if no membership", preferredStyle: .alert)
-            // add the actions (buttons)
-            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-            // show the alert
-            self.present(alert, animated: true, completion: nil)
-        }
     }
 
     override func didReceiveMemoryWarning() {
