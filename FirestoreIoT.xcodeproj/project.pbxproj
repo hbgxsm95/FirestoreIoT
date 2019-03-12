@@ -12,6 +12,7 @@
 		821F77F42228B2570064F7E6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 821F77F32228B2570064F7E6 /* Assets.xcassets */; };
 		821F77F72228B2570064F7E6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 821F77F52228B2570064F7E6 /* LaunchScreen.storyboard */; };
 		821F78022228B2570064F7E6 /* FirestoreIoTTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821F78012228B2570064F7E6 /* FirestoreIoTTests.swift */; };
+		826DBDEA22377B6100219D14 /* InputThresholdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826DBDE922377B6100219D14 /* InputThresholdViewController.swift */; };
 		829898E1222D99BC00F73B19 /* PiTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829898E0222D99BC00F73B19 /* PiTableViewCell.swift */; };
 		829898E7222DA38E00F73B19 /* PiTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829898E6222DA38E00F73B19 /* PiTableViewController.swift */; };
 		829898E9222DB18600F73B19 /* SensorTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829898E8222DB18600F73B19 /* SensorTableViewController.swift */; };
@@ -48,6 +49,7 @@
 		821F77FD2228B2570064F7E6 /* FirestoreIoTTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FirestoreIoTTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		821F78012228B2570064F7E6 /* FirestoreIoTTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreIoTTests.swift; sourceTree = "<group>"; };
 		821F78032228B2570064F7E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		826DBDE922377B6100219D14 /* InputThresholdViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputThresholdViewController.swift; sourceTree = "<group>"; };
 		829898E0222D99BC00F73B19 /* PiTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PiTableViewCell.swift; sourceTree = "<group>"; };
 		829898E6222DA38E00F73B19 /* PiTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PiTableViewController.swift; sourceTree = "<group>"; wrapsLines = 0; };
 		829898E8222DB18600F73B19 /* SensorTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorTableViewController.swift; sourceTree = "<group>"; };
@@ -130,6 +132,7 @@
 				821F77F32228B2570064F7E6 /* Assets.xcassets */,
 				821F77F52228B2570064F7E6 /* LaunchScreen.storyboard */,
 				821F77F82228B2570064F7E6 /* Info.plist */,
+				826DBDE922377B6100219D14 /* InputThresholdViewController.swift */,
 			);
 			path = FirestoreIoT;
 			sourceTree = "<group>";
@@ -377,6 +380,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				829898E9222DB18600F73B19 /* SensorTableViewController.swift in Sources */,
+				826DBDEA22377B6100219D14 /* InputThresholdViewController.swift in Sources */,
 				829898F9222E619500F73B19 /* Sensor.swift in Sources */,
 				829898E7222DA38E00F73B19 /* PiTableViewController.swift in Sources */,
 				829898E1222D99BC00F73B19 /* PiTableViewCell.swift in Sources */,

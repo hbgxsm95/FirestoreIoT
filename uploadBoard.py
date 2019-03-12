@@ -14,6 +14,7 @@ masterId = sys.argv[2]
 sensorAId = "Jarvis"
 sensorBId = "Friday"
 sensorCId = "Rogue"
+sensorAThreshold = 100
 # Use the application default credentials
 cred = credentials.ApplicationDefault()
 firebase_admin.initialize_app(cred, {
@@ -48,7 +49,8 @@ while True:
 		u"model": u"DHT11",
 		u"samplingRate": samplingARate,
 		u'errorRate': errorRate,
-		u'sampledValue': sampledValue
+		u'sampledValue': sampledValue,
+		u'threshold': sensorAThreshold
 		})
 
 	errorRate = random.uniform(0, 1)

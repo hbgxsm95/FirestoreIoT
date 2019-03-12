@@ -46,12 +46,13 @@ class SensorTableViewController: UITableViewController {
                     for document in querySnapshot!.documents {
                         // Load all the sensors
                         let fetchedData = document.data()
+                        let name = document.documentID
                         let model = fetchedData["model"] as? String ?? ""
                         let errorRate = fetchedData["errorRate"] as? Double ?? 0.0
                         let samplingRate = fetchedData["samplingRate"] as? Int ?? 0
                         let sampledValue = fetchedData["sampledValue"] as? Double ?? 0.0
                         let sensorImage = UIImage(named: model)
-                        guard let sensor = Sensor(errorRate: errorRate, samplingRate: samplingRate, sampledValue: sampledValue, model: model, image: sensorImage) else {
+                        guard let sensor = Sensor(errorRate: errorRate, samplingRate: samplingRate, sampledValue: sampledValue, model: model, image: sensorImage, name: name) else {
                             fatalError("Unable to instantiate Sensor")
                         }
                         // Add a new sensor.
@@ -61,7 +62,24 @@ class SensorTableViewController: UITableViewController {
                     }
                 }
             }
-            
+        }
+        
+        if let sourceViewController = sender.source as? InputThresholdViewController, let threshold = sourceViewController.threshold {
+            if let selectedIndexPath = tableView.indexPathForSelectedRow{
+                // TODO
+                print(selectedIndexPath.row)
+                print(threshold)
+                let db = Firestore.firestore()
+                let docRef = db.collection("sensor").document(sensors[selectedIndexPath.row].name)
+                docRef.updateData(["threshold" : threshold]){
+                    err in
+                    if let err = err {
+                        print("Error updating document: \(err)")
+                    } else{
+                        //
+                    }
+                }
+            }
         }
     }
     
@@ -152,7 +170,7 @@ class SensorTableViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // MARK: - Navigation
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -160,7 +178,6 @@ class SensorTableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
         super.prepare(for: segue, sender: sender)
     }
- */
     
     //Mark: private function
     private func loadInitSensor(){
@@ -173,12 +190,13 @@ class SensorTableViewController: UITableViewController {
                 for document in querySnapshot!.documents {
                     // Load all the sensors
                     let fetchedData = document.data()
+                    let docId = document.documentID
                     let name = fetchedData["model"] as? String ?? ""
                     let errorRate = fetchedData["errorRate"] as? Double ?? 0.0
                     let samplingRate = fetchedData["samplingRate"] as? Int ?? 0
                     let sampledValue = fetchedData["sampledValue"] as? Double ?? 0.0
                     let sensorImage = UIImage(named: name)
-                    guard let sensor = Sensor(errorRate: errorRate, samplingRate: samplingRate, sampledValue: sampledValue, model: name, image: sensorImage) else {
+                    guard let sensor = Sensor(errorRate: errorRate, samplingRate: samplingRate, sampledValue: sampledValue, model: name, image: sensorImage, name: docId) else {
                         fatalError("Unable to instantiate Sensor")
                     }
                     // Add a new sensor.
